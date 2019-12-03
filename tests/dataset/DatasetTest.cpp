@@ -152,7 +152,7 @@ TEST(DatasetTest, DatasetIterator) {
   }
   ASSERT_EQ(idx, transformds.size());
 }
-
+/*
 TEST(DatasetTest, FileBlobDataset) {
   std::vector<std::vector<af::array>> data;
 
@@ -222,7 +222,7 @@ TEST(DatasetTest, FileBlobDataset) {
     }
     blob.setHostTransform(
         0, [](void* ptr, af::dim4 size, af::dtype /* type */) {
-          float* ptr_f = (float*)ptr;
+/*          float* ptr_f = (float*)ptr;
           for (int64_t i = 0; i < size.elements(); i++) {
             ptr_f[i] += 1;
           }
@@ -322,6 +322,8 @@ TEST(DatasetTest, FileBlobDataset) {
     }
   }
 }
+
+*/
 
 TEST(DatasetTest, PrefetchDatasetCorrectness) {
   std::vector<af::array> tensormap = {af::randu(100, 200, 300)};
