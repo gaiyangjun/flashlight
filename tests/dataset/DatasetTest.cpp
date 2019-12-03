@@ -221,8 +221,8 @@ TEST(DatasetTest, FileBlobDataset) {
       }
     }
     blob.setHostTransform(
-        0, [](void* ptr, af::dim4 size, af::dtype /* type */) {
-/*          float* ptr_f = (float*)ptr;
+        0, [](void* ptr, af::dim4 size, af::dtype ) {
+          float* ptr_f = (float*)ptr;
           for (int64_t i = 0; i < size.elements(); i++) {
             ptr_f[i] += 1;
           }
