@@ -152,7 +152,7 @@ TEST(DatasetTest, DatasetIterator) {
   }
   ASSERT_EQ(idx, transformds.size());
 }
-/*
+
 TEST(DatasetTest, FileBlobDataset) {
   std::vector<std::vector<af::array>> data;
 
@@ -191,7 +191,7 @@ TEST(DatasetTest, FileBlobDataset) {
 
   // check read-write capabilities
   {
-    FileBlobDataset blob("/tmp/data.blob", true, true);
+    FileBlobDataset blob("./data.blob", true, true);
     fillup(blob);
     check(blob);
     fillup(blob);
@@ -204,7 +204,7 @@ TEST(DatasetTest, FileBlobDataset) {
     blob.writeIndex();
     check(blob);
 
-    FileBlobDataset blobcopy("/tmp/data-copy.blob", true, true);
+    FileBlobDataset blobcopy("./data-copy.blob", true, true);
     blobcopy.add(blob);
     blobcopy.add(blob, 1048576);
     auto datadup = data;
@@ -238,14 +238,14 @@ TEST(DatasetTest, FileBlobDataset) {
 
   // check everything is correct after re-opening
   {
-    FileBlobDataset blob("/tmp/data.blob");
+    FileBlobDataset blob("./data.blob");
     check(blob);
   }
 
   // multi-threaded read
   {
     std::vector<std::vector<af::array>> thdata(data.size());
-    auto blob = std::make_shared<FileBlobDataset>("/tmp/data.blob");
+    auto blob = std::make_shared<FileBlobDataset>("./data.blob");
     std::vector<std::thread> workers;
     const int nworker = 4;
     int nperworker = data.size() / nworker;
@@ -284,7 +284,7 @@ TEST(DatasetTest, FileBlobDataset) {
     }
     {
       auto blob =
-          std::make_shared<FileBlobDataset>("/tmp/data.blob", true, true);
+          std::make_shared<FileBlobDataset>("./data.blob", true, true);
       std::vector<std::thread> workers;
       const int nworker = 10;
       int nperworker = data.size() / nworker;
@@ -303,7 +303,7 @@ TEST(DatasetTest, FileBlobDataset) {
       blob->writeIndex();
     }
     {
-      auto blob = std::make_shared<FileBlobDataset>("/tmp/data.blob");
+      auto blob = std::make_shared<FileBlobDataset>("./data.blob");
       ASSERT_EQ(data.size(), blob->size());
       for (int64_t i = 0; i < data.size(); i++) {
         auto blob_sample = blob->get(i);
@@ -323,7 +323,6 @@ TEST(DatasetTest, FileBlobDataset) {
   }
 }
 
-*/
 
 TEST(DatasetTest, PrefetchDatasetCorrectness) {
   std::vector<af::array> tensormap = {af::randu(100, 200, 300)};
